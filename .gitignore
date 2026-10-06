@@ -1,0 +1,22 @@
+# Runtime data and local credentials
+.env
+.env.*
+!.env.example
+/data/
+/outputs/
+
+# Locally built binaries
+/worker
+/cloud
+*.exe
+
+# Local agent/editor state and handoff material
+/.claude/
+/.codex/
+/.agents/
+/.aws/
+/CLAUDE_HANDOFF.md
+/internal/.identity.claude-backup/
+
+# Superseded source workflow export; the maintained API workflow is under workflows/
+/minimax_h3_api.json

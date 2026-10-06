@@ -1,0 +1,19 @@
+services:
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.worker
+    restart: unless-stopped
+    environment:
+      CLOUD_URL: ${CLOUD_URL:?set CLOUD_URL}
+      WORKER_TOKEN: ${WORKER_TOKEN:?set WORKER_TOKEN}
+      WORKER_ID: ${WORKER_ID:-gpu-worker-1}
+      INFERENCE_MODE: ${INFERENCE_MODE:-mock}
+      COMFYUI_URL: ${COMFYUI_URL:-http://host.docker.internal:8188}
+      COMFYUI_WORKFLOW: ${COMFYUI_WORKFLOW:-}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - worker-data:/work
+volumes:
+  worker-data:
